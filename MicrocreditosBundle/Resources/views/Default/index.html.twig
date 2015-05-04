@@ -1,0 +1,157 @@
+{% extends 'AhoraMadridMicrocreditosBundle::layout.html.twig' %}
+
+{% block body %}
+ <div class="main-container">       
+ 			<div id="page1">
+                <div class="container">
+                    <div class="row" style="margin-top: 1% " >                       
+                        <div class="col-md-2  col-xs-3 ">
+                        <img src="{{ asset('bundles/ahoramadridmicrocreditos/images/ahoraMadrid_logo_blanco.png') }}" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 0%" >                       
+                        <div class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
+                        	<h1 style="margin-top:0px; line-height:1.2em">Microcréditos</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="videowrapper">
+                                <iframe width="1280" height="720" src="//youtube.com/embed/rEFEudW0X4s?VQ=HD720&amp;rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                            </div>   
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 1%" > 
+						<div class="col-md-8 col-md-offset-2">
+                        	<p class="ubuntu"> 
+                        		<small>
+                        			Tenemos la mejor candidatura para cambiar Madrid. </br>
+									¿Nos ayudas a que todos los vecinos de la ciudad la conozcan?
+								</small>
+                        	</p>
+                        	
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px; text-align:center" > 
+						<div class="col-md-8 col-md-offset-2">
+							<a href="{{ path('formulario') }}" class="btn btn-default">¡Fináncianos!</a>
+						</div>
+					</div>
+                    <div class="row" style="margin-top:30px; text-align:center" id="row-donaciones"> 
+                        <div class="col-md-4 col-md-offset-2">
+                            <p style="text-align:right; margin-top: 20px; padding-top:0px; color: #333; font-size:18px; font-family: 'open sans'" >
+                                Fase {{ campania.fase }}. Objetivo {{ campania.objetivo|number_format(0, ',', '.') }} €<br/>
+<strong>Préstamos recibidos: {{ totalRecibidos|number_format(0, ',', '.') }} €</strong><br/>
+<small>*transferencias recibidas y aprobadas  </small>
+                                
+                            </p>
+                            
+                        </div>
+                        <div class="col-md-4 ">
+                            <canvas id="chart1" width="160" height="160" style="width: 160px; height: 160px;"></canvas>
+                        </div>
+                    </div>
+                    <div class="row m1" style="margin-top:4% " >                       
+                        <div class="col-md-8 col-md-offset-2">
+                        	<p class="ubuntu"> 
+                        		<strong>Ahora Madrid </strong> es una candidatura ciudadana para recuperar la ciudad de Madrid. Para poder financiarnos en el camino que nos queda hasta las elecciones no queremos depender del dinero de los bancos. Preferimos depender de la gente que cree que las cosas pueden ser de otra manera. Por eso necesitamos tu ayuda para contribuir a una campaña electoral independiente.
+                        		<br/>
+								No te pedimos una donación sino un pequeño préstamo a recuperar tras las elecciones.
+                        	</p>
+                        </div>
+                    </div>
+       
+					<div class="row" style="margin-top:100px; text-align:center" > 
+						<div class="col-md-8 col-md-offset-2">
+							<a href="#page-faq" class="">¿Quieres saber más sobre los microcréditos? </br>
+								<i class="fa fa-angle-double-down  fa-2x"></i>
+							</a>
+						</div>
+					</div>
+                </div>
+             </div>  
+             <div id="page-faq">
+                <div class="container">
+                    <div class="row" style="margin-top: 4% " >  
+                    	<div class="col-md-10 col-md-offset-1">
+                    		<h2> ¿Cómo funcionan los microcréditos? </h2>
+                    		
+                    	</div>
+                    </div>
+                    <div class="row">	
+                    	<div class="col-sm-12 col-md-10 col-md-offset-1">
+	                    	<div class="col-sm-4 col-xs-12" style="margin-top: 5px ">
+	                    		<img src="{{ asset('bundles/ahoramadridmicrocreditos/images/diagrama1.png') }}" class="img-responsive">
+	                    	</div>
+	                    	<div class="col-sm-4 col-xs-12" style="margin-top: 5px ">
+	                    		<img src="{{ asset('bundles/ahoramadridmicrocreditos/images/diagrama2.png') }}" class="img-responsive">
+	                    	</div>
+	                    	<div class="col-sm-4 col-xs-12" style="margin-top: 5px ">
+	                    		<img src="{{ asset('bundles/ahoramadridmicrocreditos/images/diagrama3.png') }}" class="img-responsive">
+	                    	</div>
+                    	</div>
+                    </div>
+                    	<div class="col-md-8 col-md-offset-2">
+                    		<h2> ¿Por qué necesitamos créditos ? </h2>
+                    		<p> Según todas las encuestas <span class="ahora">Ahora Madrid </span>va conseguir una gran representación en las próximas elecciones al Ayuntamiento de Madrid. Cada partido pol­tico tiene asignados una serie de fondos públicos en función de su representación. Nuestro problema es que para poder realizar una campaña electoral solvente necesitamos financiación antes de las elecciones. Por eso necesitamos tu ayuda para "adelantar" ese dinero sin tener que recurrir a préstamos bancarios
+                    		</p>
+                    	</div>
+                    	<div class="col-md-8 col-md-offset-2">
+                    		<h2> ¿Necesito realizar un pago por internet? </h2>
+                    		<p>No, en esta web sólo registras tus datos personales previamente al pago. El ingreso real lo realizas por transferencia bancaria, de la forma en la que tú hagas normalmente tus operaciones bancarias
+                    		</p>
+                    	</div>
+                    	<div class="col-md-8 col-md-offset-2">
+                    		<h2> ¿Cuál es la garantía? </h2>
+                    		<p> La devolución de los préstamos está garantizada por dos vías:  la cantidad máxima de microcréditos (150.000 €) se encuentra por debajo de los fondos públicos que se nos asignarán en estas elecciones, de acuerdo con las expectativas de voto.  En el caso de que que obtuviésemos un resultado inferior, dado que los salarios de los representantes públicos de Ahora Madrid están limitados, el excedente de estos salarios se destinará en primer lugar a la devolución de los microcréditos.
+                    		</p>
+                    	</div>
+                    	<div class="col-md-6 col-md-offset-3">                    		
+                    		<p style="margin-top:4em;"> <small>
+                    				Tenemos la mejor candidatura para cambiar Madrid. <br/>
+									¿Nos ayudas a que toda la ciudad la conozca?								
+								</small>
+								<br/>
+								<br/>
+								<a href="{{ path('formulario') }}" class="btn btn-default">¡Fináncianos!</a>
+                    		</p>
+                    	</div>
+                 </div>
+			</div>   
+	
+<script>
+{% if totalRecibidos %}
+    recibido={{ totalRecibidos }}
+{% else %}  
+recibido=0;
+{% endif %} 
+var restante={{ campania.objetivo}}-recibido
+if(restante<0) restante=0;
+ var data = [
+   {
+        value: recibido,
+        color: "#55B8AA",
+        highlight: "#55E8AA",
+        label: "Recibido"
+    },
+    {//Aqui hay que poner el valor que falta 
+        value: restante,
+        color:"#4A4A4A",
+        highlight: "#9A9A9A",
+        label: "Restante"
+    },
+]
+
+if(data[0].value > 0){
+    var ctx = $("#chart1").get(0).getContext("2d");
+    var myDoughnutChart = new Chart(ctx).Pie(data,options);
+    //$('#info-donaciones').empty().html("*Datos de transferencias completadas con ©xito")
+}
+else{
+    $('#row-donaciones').hide()
+}
+
+</script>
+	
+{% endblock %}

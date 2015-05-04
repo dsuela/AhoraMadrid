@@ -1,0 +1,103 @@
+{% extends 'AhoraMadridAdminBaseBundle::layout_admin.html.twig' %}
+
+{% block body %}
+
+	{% for flashMessage in app.session.flashbag.get('mensaje') %}
+        <p>{{ flashMessage }}</p>
+    {% endfor %}
+    
+    <div class="row">
+    	<div class="col-md-8">
+			<h2>Totales</h2>
+			<h4>
+				Inscritas: <span class="label label-primary">{{ pagination.getTotalItemCount }}</span>. Aprobadas {{ aprobados }}.
+			</h4>
+		</div>
+	</div>
+	<h2>Buscador de inscritas</h2>
+	
+	{{ form_start(form, {'attr': {'role': 'form', 'id': 'formBuscador', 'novalidate': 'novalidate'}}) }}
+		<div class="row">
+			<div class="col-md-2">
+				<div class="col-xs-12 ">
+					<div>{{ form_row(form.documentoIdentidad, {'attr': {'class': 'form-control'}, 'label': 'Documento de identidad'}) }} </div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="col-xs-12 ">
+					<div class="col-xs-12 ">{{ form_row(form.nombre, {'attr': {'class': 'form-control'}, 'label': 'Nombre'}) }} </div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="col-xs-12 ">
+					<div class="col-xs-12 ">{{ form_row(form.apellidos, {'attr': {'class': 'form-control'}, 'label': 'Apellidos'}) }} </div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="col-xs-12 ">
+					<div class="col-xs-12 ">{{ form_row(form.distrito, {'attr': {'class': 'form-control'}, 'label': 'Distrito'}) }} </div>
+				</div>
+			</div>
+		</div>
+	{{ form_end(form) }}
+	
+	<table id="listadoCreditos" class="table table-striped ">
+
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>DNI / NIE</th>
+            <th>Distrito</th>
+            <th>Experiencia previa</th>
+            <th>Aprobada</th>
+            <th>Acciones</th>
+        </tr>
+
+        {% for inscrito in pagination %}
+            <tr class="{% if inscrito.aprobada %}recibido{% endif %}">
+                <td>{{ inscrito.nombre }}</td>
+                <td>{{ inscrito.apellidos }}</td>
+                <td>{{ inscrito.documentoIdentidad }}</td>
+                <td>{{ inscrito.distrito.descripcion }}</td>
+                <td>{{ inscrito.experienciaPrevia }}<!--  H:i:s para tiempo --></td>
+                <td>{% if inscrito.aprobada %}SI{% else %}NO{% endif %}</td>
+                <td>
+                	<a href="{{ path('detalle_inscrito', {'id': inscrito.id}) }}" data-toggle="modal" data-target="#myModal">Detalle</a> 
+                	{% if app.session.get('rol') == 30 %}
+	                	{% if inscrito.aprobada %}
+	                		 | <a href="{{ path('aprobar_inscrito', {'id': inscrito.id, 'aprobar': 0}) }}" onclick="return confirm('¿Seguro que quieres marcar la inscrita {{ inscrito.documentoIdentidad }} como no aprobada?')">No aprobada</a> | 
+	                	{% else %}
+	                		 | <a href="{{ path('aprobar_inscrito', {'id': inscrito.id, 'aprobar': 1}) }}" onclick="return confirm('¿Seguro que quieres marcar la inscrita {{ inscrito.documentoIdentidad }} como aprobada?')">Aprobada</a> | 
+	                	{% endif %}
+	                	<a href="{{ path('borrar_inscrito', {'id': inscrito.id}) }}" onclick="return confirm('¿Seguro que quieres borrar la inscrita {{ inscrito.documentoIdentidad }}?')">Borrar</a>
+	                {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title">Modal title</h4>
+
+            </div>
+            <div class="modal-body"><div class="te"></div></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+{% endblock %}

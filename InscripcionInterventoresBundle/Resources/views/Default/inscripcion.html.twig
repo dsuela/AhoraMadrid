@@ -1,0 +1,159 @@
+{% extends 'AhoraMadridInscripcionInterventoresBundle::layout.html.twig' %}
+
+{% form_theme form 'AhoraMadridInscripcionInterventoresBundle::form_theme.html.twig' %}
+
+{% block body %}
+<style>
+div.radio {
+   display: inline-block;
+   margin-right: 5em;
+}
+h2,h3{
+	color:#333;
+}
+label{
+	color: #00A48C;
+}
+button.btn-default{
+	background-color:#00A48C;
+	color:white;
+	font-size: 1.3em;
+	padding:0.5em 1em ;
+}
+#footer {
+  pading-top: 5em;
+  background-color: #00A48C;
+  border-top: 1px solid #03705E;
+}
+#footer .container {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+#footer a {
+  /* ¿Quieres saber más s: */
+  font-family: 'open sans', 'helvetica', arial;
+  font-size: 18px;
+  color: #FFFFFF;
+  line-height: 24px;
+  text-decoration: underline;
+}
+#footer a:hover{
+	text-decoration: none;
+}
+
+#footer ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+div.form-group{
+	height:auto;
+}
+</style>
+<div class="main-container">       
+	<div id="formularios">
+		<div class="container">
+		{{ form_start(form, {'attr': {'role': 'form', 'id': 'formularioInscripcion'}}) }}
+		{{ form_errors(form) }}
+		<div class="row" style="margin-top: 4% " >                       
+            <div class="col-md-2 col-md-offset-5 col-xs-offset-4 col-xs-4">
+            	<div >
+            		<a href="http://financia.ahoramadrid.org"> 
+            			<img src="{{ asset('bundles/ahoramadridmicrocreditos/images/logo2.png') }}" class="img-responsive" /> </a>
+            	</div>
+            </div>
+	    </div>
+
+		<h3> Estos son los datos necesarios para ser interventor o interventora.   </h3>
+		<strong> Son unos cuantos, pero tienes que rellenarlos todos. </strong>
+		<div class="row" style="margin-top:2em">
+			<div class="col-md-4 col-xs-12">
+					{{ form_row(form.nombre, {'attr': {'class': 'form-control'}, 'label': 'Nombre'}) }} 
+			</div>
+			<div class="col-md-4 col-xs-12">
+					{{ form_row(form.apellidos, {'attr': {'class': 'form-control'}, 'label': 'Apellidos'}) }}
+			</div>
+			<div class="col-md-4 col-xs-12">
+					{{ form_row(form.documentoIdentidad, {'attr': {'class': 'form-control'}, 'label': 'Documento de Identidad'}) }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+					{{ form_row(form.edad, {'attr': {'class': 'form-control'}, 'label': 'Edad'}) }}
+			</div>
+			<div class="col-md-4">
+					{{ form_row(form.nacionalidad, {'attr': {'class': 'form-control'}, 'label': 'Nacionalidad'}) }}
+			</div>
+		</div>
+		<h3> Contacto </h3>
+		<div class="row">			
+			<div class="col-md-4">
+					{{ form_row(form.correoElectronico, {'attr': {'class': 'form-control'}, 'label': 'Correo Electrónico'}) }}
+			</div>
+			<div class="col-md-4">
+					{{ form_row(form.telefono, {'attr': {'class': 'form-control'}, 'label': 'Teléfono'}) }}
+			</div>
+
+		</div>
+		<div class="row">
+			
+			
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+		    	
+					{{ form_row(form.direcccion, {'attr': {'class': 'form-control'}, 'label': 'Dirección'}) }}
+				
+			</div>
+			<div class="col-md-4">
+		    	
+					{{ form_row(form.codigoPostal, {'attr': {'class': 'form-control'}, 'label': 'Código Postal'}) }}
+				
+			</div>
+
+		</div>
+		
+		<div class="row">
+			<div class="col-md-4">
+		    	
+					{{ form_row(form.distrito, {'attr': {'class': 'form-control'}, 'label': 'Distrito'}) }}
+				
+			</div>
+			<div class="col-md-8">
+					{{ form_row(form.profesion, {'attr': {'class': 'form-control'}, 'label': 'Profesión'}) }}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-5">
+		    	
+					{{ form_row(form.escaneado, {'attr': {'class': ''}, 'label': 'Archivo con tu DNI escaneado a 2 caras'}) }}
+				<small> Si no tienes escáner cerca, pero tienes un móvil con buena cámara, un truco es tomarle al DNI una foto con buena luz y desde cerca. Si haces esto, antes de enviar la imagen, asegúrate de que puedes leer todo lo que pone. 
+				</small>
+			</div>
+			<div class="col-md-6 col-md-offset-1">
+		    	
+					{{ form_row(form.experienciaPrevia, {'attr': {'class': ''}, 'label': '¿Tienes experiencia previa en estos asuntos?'}) }}
+				
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="checkbox_acepto acepto">
+				    <label>
+				      	<input type="checkbox"> Acepto cláusula LOPD:
+				    </label>
+				    <br/>
+				    <small>Le informamos que sus datos serán incorporados al fichero ELECCIONES 2015, del que es titular AHORA MADRID, cuyo CIF es G87218962.  La única finalidad de este fichero consiste en gestionar los datos de campaña de las elecciones municipales tendrán lugar en mayo de 2015. Si desea ejercitar los derechos de acceso, rectificación, cancelación y oposición, puede ejercitarlos mediante una comunicación en este sentido a la dirección de correo electrónico legal@ahoramadrid.org  Esta comunicación deberá estar firmada e incluir una copia escaneada de su documento de identificación personal.</small>
+				 </div>
+			</div>
+		</div>
+		<div style="text-align:center; margin-top:1em;">
+			<a href="javascript:;" class="btn btn-default disabled" id="send-dummy"> Debes confirmar la clásula de LOPD para terminar</a>
+			{{ form_end(form) }}
+		</div>
+	</div>
+	</div>
+</div>
+{% endblock %}
