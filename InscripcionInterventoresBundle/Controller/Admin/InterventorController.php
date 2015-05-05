@@ -14,7 +14,7 @@ class InterventorController extends AdminController{
 	 */
 	public function listarInscritos(Request $request){
 		//Control de roles
-		$response = parent::controlSesion($request, array(parent::ROL_ADMIN_INTERVENTORES, parent::ROL_CONSULTA));
+		$response = parent::controlSesion($request, array(parent::ROL_ADMIN_INTERVENTORES, parent::ROL_CONSULTA_INTERVENTORES, parent::ROL_SUPER_USUARIO));
 		if($response != null) return $response;
 	
 		//Se crea y se recoge el formulario de búsqueda
@@ -91,7 +91,7 @@ class InterventorController extends AdminController{
 	 */
 	public function detalleCredito(Request $request, $id){
 		//Control de roles
-		$response = parent::controlSesion($request, array(parent::ROL_ADMIN_INTERVENTORES, parent::ROL_CONSULTA));
+		$response = parent::controlSesion($request, array(parent::ROL_ADMIN_INTERVENTORES, parent::ROL_CONSULTA_INTERVENTORES, parent::ROL_SUPER_USUARIO));
 		if($response != null) return $response;
 	
 		//Se busca el inscrito
@@ -106,7 +106,7 @@ class InterventorController extends AdminController{
 	 */
 	public function aprobarInscrito(Request $request, $id, $aprobar){
 		//Control de roles
-		$response = parent::controlSesion($request, array(parent::ROL_ADMIN_INTERVENTORES));
+		$response = parent::controlSesion($request, array(parent::ROL_ADMIN_INTERVENTORES, parent::ROL_SUPER_USUARIO));
 		if($response != null) return $response;
 	
 		//Se busca el inscrito y se cambia de estado
@@ -127,7 +127,7 @@ class InterventorController extends AdminController{
 	 */
 	public function borrarInscrito(Request $request, $id){
 		//Control de roles
-		$response = parent::controlSesion($request, array(parent::ROL_ADMIN_INTERVENTORES));
+		$response = parent::controlSesion($request, array(parent::ROL_ADMIN_INTERVENTORES, parent::ROL_SUPER_USUARIO));
 		if($response != null) return $response;
 	
 		//Se buscan el inscrito y se borra

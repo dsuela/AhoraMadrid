@@ -14,7 +14,7 @@ class LoginController extends AdminController{
 	 */
 	public function indexAction(Request $request){
 		//Para hacer la contraseña <div>{{ contrasena }}</div>
-		//$hash = password_hash('mtdStvJf', PASSWORD_BCRYPT, array('cost' => 8));
+		//$hash = password_hash('inRh517ZX', PASSWORD_BCRYPT, array('cost' => 8));
 		
 		//Se carga el formulario
 		$usuarioParam = new Usuario();
@@ -42,7 +42,7 @@ class LoginController extends AdminController{
 		}
 		
 		return $this->render('AhoraMadridAdminBaseBundle::login.html.twig', array('form' => $form->createView(), 'error' => $error));
-		//return $this->render('AhoraMadridAdminBaseBundle:login.html.twig', array('form' => $form->createView(), 'error' => $error, 'contrasena' => $hash));
+		//return $this->render('AhoraMadridAdminBaseBundle::login.html.twig', array('form' => $form->createView(), 'error' => $error, 'contrasena' => $hash));
 	}
 	
 	/**
