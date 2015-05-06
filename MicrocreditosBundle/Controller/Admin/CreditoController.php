@@ -15,7 +15,7 @@ class CreditoController extends AdminController{
 	 */
 	public function listarCreditos(Request $request){
 		//Control de roles
-		$response = parent::controlSesion($request, array(parent::ROL_ADMIN, parent::ROL_CONSULTA));
+		$response = parent::controlSesion($request, array(parent::ROL_ADMIN, parent::ROL_CONSULTA, parent::ROL_SUPER_USUARIO));
 		if($response != null) return $response;
 		
 		//Se crea y se recoge el formulario
@@ -107,7 +107,7 @@ class CreditoController extends AdminController{
 	 */
 	public function detalleCredito(Request $request, $id){
 		//Control de roles
-		$response = parent::controlSesion($request, array(parent::ROL_ADMIN, parent::ROL_CONSULTA));
+		$response = parent::controlSesion($request, array(parent::ROL_ADMIN, parent::ROL_CONSULTA, parent::ROL_SUPER_USUARIO));
 		if($response != null) return $response;
 		
 		//Se buscan el cr�dito
@@ -157,7 +157,7 @@ class CreditoController extends AdminController{
 	 */
 	public function borrarCredito(Request $request, $id){
 		//Control de roles
-		$response = parent::controlSesion($request, array(parent::ROL_ADMIN));
+		$response = parent::controlSesion($request, array(parent::ROL_ADMIN, parent::ROL_SUPER_USUARIO));
 		if($response != null) return $response;
 	
 		//Se buscan el cr�dito

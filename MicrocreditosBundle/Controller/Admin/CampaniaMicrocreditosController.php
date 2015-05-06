@@ -15,10 +15,10 @@ class CampaniaMicrocreditosController extends AdminController{
 	 */
 	public function editarCampania(Request $request, $id){
 		//Control de roles
-		$response = parent::controlSesion($request, array(parent::ROL_ADMIN));
+		$response = parent::controlSesion($request, array(parent::ROL_ADMIN, parent::ROL_SUPER_USUARIO));
 		if($response != null) return $response;
 		
-		//Se recoge la campaña de microcréditos
+		//Se recoge la campaï¿½a de microcrï¿½ditos
 		$em = $this->getDoctrine()->getManager();
 		$repoMicro = $em->getRepository('AhoraMadridMicrocreditosBundle:CampaniaMicrocreditos');
 		$campania = $repoMicro->find($id);
