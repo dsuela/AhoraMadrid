@@ -3,6 +3,9 @@
 namespace AhoraMadrid\InscripcionInterventoresBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AhoraMadrid\AdminBaseBundle\Controller\AdminController as AdminController;
 use AhoraMadrid\InscripcionInterventoresBundle\Entity\Inscrito;
@@ -141,6 +144,54 @@ class InterventorController extends AdminController{
 		$sesion->getFlashBag()->add('mensaje', 'La inscrita se ha borrado correctamente');
 	
 		return $this->redirectToRoute('listar_inscritos');
+	}
+	
+	/**
+	 * @Route("/apladmin/exportar-csv/", name="csv_interventores")
+	 */
+	public function exportarCsv(Request $request){
+		//Control de roles
+		$response = parent::controlSesion($request, array(parent::ROL_ADMIN_INTERVENTORES, parent::ROL_CONSULTA_INTERVENTORES, parent::ROL_SUPER_USUARIO));
+		if($response != null) return $response;
+		
+		//Se crea la respuesta
+		$response = new StreamedResponse();
+		$response->setCallback(function () {
+			ob_flush();
+			flush();
+			
+			//Se buscan los inscritos
+			$repository = $this->getDoctrine()->getRepository('AhoraMadridInscripcionInterventoresBundle:Inscrito');
+			$inscritos = $repository->findAll();
+			
+			$fp = fopen('php://output', 'w');
+			
+			fputcsv($fp, array('Id', 'Distrito', 'Nombre', 'Apellidos', 'Documento identidad', 
+					'Correo', 'Teléfono', 'Profesión', 'Edad', 'Nacionalidad', 'Dirección', 
+					'Código postal', 'Experiencia previa', 'Aprobada'), ';');
+			
+			foreach($inscritos as $inscrito){
+				fputcsv($fp, array($inscrito->getId(), $inscrito->getDistrito()->getDescripcion(), $inscrito->getNombre(), 
+						$inscrito->getApellidos(), $inscrito->getDocumentoIdentidad(), $inscrito->getCorreoElectronico(), 
+						$inscrito->getTelefono(), $inscrito->getProfesion(), $inscrito->getEdad(), $inscrito->getNacionalidad(), 
+						$inscrito->getDirecccion(), $inscrito->getCodigoPostal(), $inscrito->getExperienciaPrevia(), 
+						$inscrito->getAprobada() == true ? 'Si' : 'No'), ';');
+			}
+			fclose($fp);
+			
+			
+			
+			ob_flush();
+			flush();
+		});
+		
+		//$response->headers->set('Content-Type', 'application/force-download');
+		$response->headers->set('Content-Disposition','attachment; filename="apoderadas.csv"');
+		$response->headers->set('Content-Type', 'text/csv');
+		$response->setCharset('ISO-8859-1');
+		
+		return $response;
+		//return new Response($fp, 200, array('content-type' => 'text/csv'));
 	}
 	
 }

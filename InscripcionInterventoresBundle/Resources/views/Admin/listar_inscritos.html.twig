@@ -7,11 +7,15 @@
     {% endfor %}
     
     <div class="row">
-    	<div class="col-md-8">
+    	<div class="col-md-6">
 			<h2>Totales</h2>
 			<h4>
 				Inscritas: <span class="label label-primary">{{ pagination.getTotalItemCount }}</span>. Aprobadas {{ aprobados }}.
 			</h4>
+		</div>
+		<div class="col-md-6">
+			<h2>Descargar archivo en formato CSV</h2>
+			<a href="{{ path('csv_interventores') }} " target="_blank">Descargar</a>
 		</div>
 	</div>
 	<h2>Buscador de inscritas</h2>
