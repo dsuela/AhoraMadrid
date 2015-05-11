@@ -1,0 +1,55 @@
+{% block body %}
+	<h2>Detalle del crédito</h2> 
+	<table id="listadoCreditos" class="table table-striped ">
+
+        <tr>
+            <th>Campo</th>
+            <th>Valor</th>
+        </tr>
+        
+        <tr>
+            <td>Identificador</td><td>{{ donacion.identificador }}</td>
+        </tr>
+        <tr>
+            <td>Nombre</td><td>{{ donacion.nombre }}</td>
+        </tr>
+        <tr>
+            <td>Apellidos</td><td>{{ donacion.apellidos }}</td>
+        </tr>
+        <tr>
+            <td>Documento</td><td>{{ donacion.documentoIdentidad }}</td>
+        </tr>
+        <tr>
+            <td>Importe</td><td>{{ donacion.importe }} €</td>
+        </tr>
+        <tr>
+            <td>Fecha</td><td>{{ donacion.fecha|date('d/m/Y') }}<!--  H:i:s para tiempo --></td>
+        </tr>
+        <tr>
+            <td>Recibido</td><td>{% if donacion.recibido %}SI{% else %}NO{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Correo</td><td>{{ donacion.correoElectronico }}</td>
+        </tr>
+        <tr>
+            <td>Dirección</td><td>{{ donacion.direcccion }}</td>
+        </tr>
+        <tr>
+            <td>Municipio</td><td>{{ donacion.municipio }}</td>
+        </tr>
+        <tr>
+            <td>Provincia</td><td>{{ donacion.provincia }}</td>
+        </tr>
+        <tr>
+            <td>País</td><td>{{ donacion.pais }}</td>
+        </tr>
+        <tr>
+            <td>Código postal</td><td>{{ donacion.codigoPostal }}</td>
+        </tr>
+
+    </table>
+<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+    
+{% endblock %}

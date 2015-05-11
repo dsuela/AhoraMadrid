@@ -1,0 +1,45 @@
+<?php
+
+namespace AhoraMadrid\DonacionesBundle\Controller\Admin;
+
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AhoraMadrid\AdminBaseBundle\Controller\AdminController as AdminController;
+use AhoraMadrid\DonacionesBundle\Entity\CampaniaMicrocreditos;
+use AhoraMadrid\DonacionesBundle\Form\CampaniaMicrocreditosType;
+
+class CampaniaMicrocreditosController extends AdminController{
+	
+	/**
+	 * @Route("/apladmin/editar-campania-microcreditos/{id}", name="editar_campania_microcreditos")
+	 */
+	public function editarCampania(Request $request, $id){
+		//Control de roles
+		$response = parent::controlSesion($request, array(parent::ROL_ADMIN));
+		if($response != null) return $response;
+		
+		//Se recoge la campa�a de microcr�ditos
+		$em = $this->getDoctrine()->getManager();
+		$repoMicro = $em->getRepository('AhoraMadridDonacionesBundle:CampaniaMicrocreditos');
+		$campania = $repoMicro->find($id);
+		
+		//Se carga el formulario
+		$form = $this->createForm(new CampaniaMicrocreditosType(), $campania);
+		$form->handleRequest($request);
+		
+		if($form->isValid()){
+			//Se guarda
+			$em->flush();
+			
+			//Se guarda el mensaje
+			$sesion = $this->getRequest()->getSession();
+			$sesion->getFlashBag()->add('mensaje', 'La campaña se ha guardado correctamente');
+			
+			return $this->redirectToRoute('listar_creditos');
+		}
+		
+		return $this->render('AhoraMadridDonacionesBundle:Admin:editar_campania_microcreditos.html.twig', array(
+				'form' => $form->createView()
+		));
+	}
+}
