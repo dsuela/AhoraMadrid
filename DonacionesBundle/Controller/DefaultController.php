@@ -73,7 +73,7 @@ class DefaultController extends Controller{
 			$em->flush();
 			
 			//Se crea el identificador de verdad
-			$identificador = 'AhoraMadrid'. $donacion->getId() . self::stringAleatorio();
+			$identificador = 'DonaAhoraMadrid'. $donacion->getId() . self::stringAleatorio();
 			//Se actualiza el identificador
 			//$em = $this->getDoctrine()->getManager();
 			$donacion->setIdentificador($identificador);
@@ -96,7 +96,7 @@ class DefaultController extends Controller{
 			$mailer = $this->get('mailer');
 			$message = $mailer->createMessage()
 				->setSubject('Contrato de microcrédito con Ahora Madrid')
-				->setFrom('contratos@ahoramadrid.org')
+				->setFrom('donaciones@ahoramadrid.org')
 				->setTo($donacion->getCorreoElectronico())
 				->setBody(
 					$this->renderView(
