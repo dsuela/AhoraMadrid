@@ -1,0 +1,62 @@
+{% extends 'AhoraMadridInscripcionInterventoresBundle::layout.html.twig' %}
+
+{% block body %}
+<style>
+#footer {
+  pading-top: 5em;
+  background-color: #00A48C;
+  border-top: 1px solid #03705E;
+}
+#footer .container {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+#footer a {
+  /* ¿Quieres saber más s: */
+  font-family: 'open sans', 'helvetica', arial;
+  font-size: 18px;
+  color: #FFFFFF;
+  line-height: 24px;
+  text-decoration: underline;
+}
+#footer a:hover{
+    text-decoration: none;
+}
+
+#footer ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+div.form-group{
+    height:auto;
+}
+</style>
+ <div class="main-container">       
+	<div id="page1" style="min-height:80vh">
+    	<div class="container">
+                 <div class="row" style="margin-top: 4% " >                       
+                     
+                 </div>
+
+                 <div class="row" style="margin-top: 2%" >                       
+                     <div class="col-md-8 col-md-offset-2">
+                     	<h1>¡Gracias!</h1>
+                     </div>
+                 </div>
+
+                 <div class="row" style="margin-top: 4%" > 
+			<div class="col-md-8 col-md-offset-2">
+                     	<p class="ubuntu"> 
+                     		Recuerda que deberás confirmar tus datos en la mesa de votación.
+                     	</p>
+                     	<p class="ubuntu"> 
+                     		Con tu ayuda y la de muchas otras personas trabajaremos duro por hacer llegar a toda la ciudad la ilusión por el cambio.
+                     	</p>
+                     	
+                     </div>
+                 </div>
+           </div>
+        </div>  
+    </div>
+{% endblock %}
