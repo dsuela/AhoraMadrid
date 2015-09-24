@@ -14,6 +14,7 @@ class AdminController extends Controller{
 	const ROL_ADMIN = 20;
 	const ROL_ADMIN_INTERVENTORES = 30;
 	const ROL_CONSULTA_INTERVENTORES = 40;
+	const ROL_ADMIN_VOTANTES = 50;
 	
 	protected function guardarUsuarioSesion(Request $request, $usuario){
 		if($usuario != null){
