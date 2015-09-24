@@ -43,4 +43,11 @@ class DefaultController extends Controller
     public function correcto(Request $request){
     	return $this->render('AhoraMadridVovesBundle:Default:inscripcion_ok.html.twig');
     }
+
+    /**
+     * @Route("/", name="vocalia_home")
+     */
+    public function homeAction(Request $request){
+        return $this->render('AhoraMadridVovesBundle:Default:home.html.twig');
+    }
 }
