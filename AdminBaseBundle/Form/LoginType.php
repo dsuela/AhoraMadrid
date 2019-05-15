@@ -1,6 +1,6 @@
 <?php
 
-namespace AhoraMadrid\AdminBaseBundle\Form;
+namespace MadridEnPie\AdminBaseBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,7 +26,7 @@ class LoginType extends AbstractType{
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
 	{
 		$resolver->setDefaults(array(
-				'data_class' => 'AhoraMadrid\AdminBaseBundle\Entity\Usuario'
+				'data_class' => 'MadridEnPie\AdminBaseBundle\Entity\Usuario'
 		));
 	}
 	

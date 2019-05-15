@@ -1,6 +1,6 @@
 <?php
 
-namespace AhoraMadrid\DonacionesBundle\Controller;
+namespace MadridEnPie\DonacionesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,8 +11,8 @@ use Swift_Attachment;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ps\PdfBundle\Annotation\Pdf;
-use AhoraMadrid\DonacionesBundle\Entity\Donacion;
-use AhoraMadrid\DonacionesBundle\Form\DonacionType;
+use MadridEnPie\DonacionesBundle\Entity\Donacion;
+use MadridEnPie\DonacionesBundle\Form\DonacionType;
 
 class DefaultController extends Controller{
     
@@ -21,18 +21,18 @@ class DefaultController extends Controller{
      */
 	public function indexAction(){
 		//Primero se buscan campa�as activas
-		$repositoryCampanias = $this->getDoctrine()->getRepository('AhoraMadridDonacionesBundle:CampaniaDonaciones');
+		$repositoryCampanias = $this->getDoctrine()->getRepository('MadridEnPieDonacionesBundle:CampaniaDonaciones');
 		$campania = $repositoryCampanias->find(1);
 		
 		//Se buscan los cr�ditos recibidos
-		$repository = $this->getDoctrine()->getRepository('AhoraMadridDonacionesBundle:Donacion');
+		$repository = $this->getDoctrine()->getRepository('MadridEnPieDonacionesBundle:Donacion');
 		$qbTotalRecibidos = $repository->createQueryBuilder('c')
 		->select('SUM(c.importe)')
 		->where('c.recibido = 1');
 		
 		$totalRecibidos = $qbTotalRecibidos->getQuery()->getSingleScalarResult();
 		
-        return $this->render('AhoraMadridDonacionesBundle:Default:index.html.twig', array('totalRecibidos' => $totalRecibidos, 'campania' => $campania));
+        return $this->render('MadridEnPieDonacionesBundle:Default:index.html.twig', array('totalRecibidos' => $totalRecibidos, 'campania' => $campania));
     }
 	
 	/**
@@ -41,22 +41,22 @@ class DefaultController extends Controller{
      */
 	 public function formulario(Request $request){
 	 	//Primero se buscan campa�as activas
-	 	$repositoryCampanias = $this->getDoctrine()->getRepository('AhoraMadridDonacionesBundle:CampaniaDonaciones');
+	 	$repositoryCampanias = $this->getDoctrine()->getRepository('MadridEnPieDonacionesBundle:CampaniaDonaciones');
 	 	$campania = $repositoryCampanias->find(1);
 	 	//$totalCampaniasActivas = $qbCampaniasActivas->getQuery()->getSingleScalarResult();
 	 	
 	 	//Si no hay campa�as activas, no se muestra el formulario
 	 	if(!$campania->getActiva()){
-	 		return $this->render('AhoraMadridDonacionesBundle:Default:no_campania.html.twig');
+	 		return $this->render('MadridEnPieDonacionesBundle:Default:no_campania.html.twig');
 	 	}
 	 	
 		//Se carga el formulario
 		$donacion = new Donacion();
-		$form = $this->createForm(new DonacionType(), $donacion);
+		$form = $this->createForm(new DonacionType(), $donacion, array('csrf_protection' => false));
 		$form->handleRequest($request);
 		
 		//Se buscan los cr�ditos recibidos
-		$repository = $this->getDoctrine()->getRepository('AhoraMadridDonacionesBundle:Donacion');
+		$repository = $this->getDoctrine()->getRepository('MadridEnPieDonacionesBundle:Donacion');
 		$qbTotalRecibidos = $repository->createQueryBuilder('c')
 							->select('SUM(c.importe)')
 							->where('c.recibido = 1');
@@ -73,7 +73,7 @@ class DefaultController extends Controller{
 			$em->flush();
 			
 			//Se crea el identificador de verdad
-			$identificador = 'DonaAhoraMadrid'. $donacion->getId() . self::stringAleatorio();
+			$identificador = 'DonaMadridEnPie'. $donacion->getId() . self::stringAleatorio();
 			//Se actualiza el identificador
 			//$em = $this->getDoctrine()->getManager();
 			$donacion->setIdentificador($identificador);
@@ -82,25 +82,25 @@ class DefaultController extends Controller{
 			//Se crea el pdf
 			$facade = $this->get('ps_pdf.facade');
 			$response = new Response();
-			$this->render('AhoraMadridDonacionesBundle:Default:contrato.pdf.twig', array('donacion' => $donacion), $response);
+			$this->render('MadridEnPieDonacionesBundle:Default:contrato.pdf.twig', array('donacion' => $donacion), $response);
 			
 			$xml = $response->getContent();
 			$content = $facade->render($xml);
 			
 			//Se escribe a disco el pdf
-			$ruta = $this->get('kernel')->locateResource('@AhoraMadridDonacionesBundle/Resources/contratos/');
+			$ruta = $this->get('kernel')->locateResource('@MadridEnPieDonacionesBundle/Resources/contratos/');
 			$fs = new Filesystem();
 			$fs->dumpFile($ruta . $identificador .'.pdf', $content);
 			
 			//Se manda el correo
 			$mailer = $this->get('mailer');
 			$message = $mailer->createMessage()
-				->setSubject('Contrato de microcrédito con Ahora Madrid')
-				->setFrom('donaciones@ahoramadrid.org')
+				->setSubject('Contrato de donación con Madrid en Pie')
+				->setFrom('DonacionesIUMEPM@gmail.com')
 				->setTo($donacion->getCorreoElectronico())
 				->setBody(
 					$this->renderView(
-						'AhoraMadridDonacionesBundle:Default:correo.txt.twig',
+						'MadridEnPieDonacionesBundle:Default:correo.txt.twig',
 						array('donacion' => $donacion)
 					),
 					'text/plain'
@@ -113,7 +113,7 @@ class DefaultController extends Controller{
 		}
 		
 		//Si no se ha enviado el formulario, se carga la página con el formulario
-		return $this->render('AhoraMadridDonacionesBundle:Default:formulario.html.twig', array(
+		return $this->render('MadridEnPieDonacionesBundle:Default:formulario.html.twig', array(
                     'form' => $form->createView(),
 					'totalRecibidos' => $totalRecibidos,
 					'campania' => $campania
@@ -125,14 +125,14 @@ class DefaultController extends Controller{
      */
 	 public function contrato($identificador){
 		//Se busca el crédito por su identificador
-		$repository = $this->getDoctrine()->getRepository('AhoraMadridDonacionesBundle:Donacion');
+		$repository = $this->getDoctrine()->getRepository('MadridEnPieDonacionesBundle:Donacion');
 		$donacion = $repository->findOneByIdentificador($identificador);
 		//Si no se ha encontrado, no se puede crear el pdf. Se muestra la página de eror
 		if(!$donacion){
-			return $this->render('AhoraMadridDonacionesBundle:Default:error_contrato.html.twig', array('identificador' => $identificador));
+			return $this->render('MadridEnPieDonacionesBundle:Default:error_contrato.html.twig', array('identificador' => $identificador));
 		}
 		
-        return $this->render('AhoraMadridDonacionesBundle:Default:contrato_ok.html.twig', array('donacion' => $donacion));
+        return $this->render('MadridEnPieDonacionesBundle:Default:contrato_ok.html.twig', array('donacion' => $donacion));
 		//return new Response($content, 200, array('content-type' => 'application/pdf'));
 	 }
 	 
@@ -142,11 +142,11 @@ class DefaultController extends Controller{
      */
 	 public function pdf($identificador){
 		//Se busca el crédito por su identificador
-		$repository = $this->getDoctrine()->getRepository('AhoraMadridDonacionesBundle:Donacion');
+		$repository = $this->getDoctrine()->getRepository('MadridEnPieDonacionesBundle:Donacion');
 		$donacion = $repository->findOneByIdentificador($identificador);
 		//Si no se ha encontrado, no se puede crear el pdf. Se muestra la página de eror
 		if(!$donacion){
-			return $this->render('AhoraMadridDonacionesBundle:Default:error_contrato.html.twig', array('identificador' => $identificador));
+			return $this->render('MadridEnPieDonacionesBundle:Default:error_contrato.html.twig', array('identificador' => $identificador));
 		}
 		
 		//Se guarda el crédito
@@ -157,7 +157,7 @@ class DefaultController extends Controller{
 		//Se crea el pdf
 		$facade = $this->get('ps_pdf.facade');
 		$response = new Response();
-		$this->render('AhoraMadridDonacionesBundle:Default:contrato.pdf.twig', array('donacion' => $donacion), $response);
+		$this->render('MadridEnPieDonacionesBundle:Default:contrato.pdf.twig', array('donacion' => $donacion), $response);
 		
 		$xml = $response->getContent();
 		$content = $facade->render($xml);

@@ -1,11 +1,11 @@
 <?php
 
-namespace AhoraMadrid\DonacionesBundle\Form;
+namespace MadridEnPie\DonacionesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use AhoraMadrid\DonacionesBundle\Form\ReCaptchaType;
+use MadridEnPie\DonacionesBundle\Form\ReCaptchaType;
 
 class DonacionType extends AbstractType {
 
@@ -50,7 +50,7 @@ class DonacionType extends AbstractType {
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'AhoraMadrid\DonacionesBundle\Entity\Donacion'
+            'data_class' => 'MadridEnPie\DonacionesBundle\Entity\Donacion'
         ));
     }
 
@@ -58,7 +58,7 @@ class DonacionType extends AbstractType {
      * @return string
      */
     public function getName() {
-        return 'ahoramadrid_donacionesbundle_donacion';
+        return 'madridenpie_donacionesbundle_donacion';
     }
 
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace AhoraMadrid\DonacionesBundle\Controller\Admin;
+namespace MadridEnPie\DonacionesBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AhoraMadrid\AdminBaseBundle\Controller\AdminController as AdminController;
-use AhoraMadrid\DonacionesBundle\Entity\CampaniaDonaciones;
-use AhoraMadrid\DonacionesBundle\Form\CampaniaDonacionesType;
+use MadridEnPie\AdminBaseBundle\Controller\AdminController as AdminController;
+use MadridEnPie\DonacionesBundle\Entity\CampaniaDonaciones;
+use MadridEnPie\DonacionesBundle\Form\CampaniaDonacionesType;
 
 class CampaniaDonacionesController extends AdminController{
 	
@@ -20,7 +20,7 @@ class CampaniaDonacionesController extends AdminController{
 		
 		//Se recoge la campa�a de microcr�ditos
 		$em = $this->getDoctrine()->getManager();
-		$repoMicro = $em->getRepository('AhoraMadridDonacionesBundle:CampaniaDonaciones');
+		$repoMicro = $em->getRepository('MadridEnPieDonacionesBundle:CampaniaDonaciones');
 		$campania = $repoMicro->find($id);
 		
 		//Se carga el formulario
@@ -38,7 +38,7 @@ class CampaniaDonacionesController extends AdminController{
 			return $this->redirectToRoute('listar_donaciones');
 		}
 		
-		return $this->render('AhoraMadridDonacionesBundle:Admin:editar_campania_donaciones.html.twig', array(
+		return $this->render('MadridEnPieDonacionesBundle:Admin:editar_campania_donaciones.html.twig', array(
 				'form' => $form->createView()
 		));
 	}

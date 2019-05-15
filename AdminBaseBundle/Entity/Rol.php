@@ -1,6 +1,6 @@
 <?php
 
-namespace AhoraMadrid\AdminBaseBundle\Entity;
+namespace MadridEnPie\AdminBaseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Rol
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AhoraMadrid\AdminBaseBundle\Entity\RolRepository")
+ * @ORM\Entity(repositoryClass="MadridEnPie\AdminBaseBundle\Entity\RolRepository")
  */
 class Rol
 {

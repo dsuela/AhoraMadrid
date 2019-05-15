@@ -1,12 +1,12 @@
 <?php
 
-namespace AhoraMadrid\DonacionesBundle\Controller\Admin;
+namespace MadridEnPie\DonacionesBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Swift_Attachment;
-use AhoraMadrid\AdminBaseBundle\Controller\AdminController as AdminController;
-use AhoraMadrid\DonacionesBundle\Entity\Donacion;
+use MadridEnPie\AdminBaseBundle\Controller\AdminController as AdminController;
+use MadridEnPie\DonacionesBundle\Entity\Donacion;
 
 class DonacionController extends AdminController{
 	
@@ -33,11 +33,11 @@ class DonacionController extends AdminController{
 	    $data = $form->getData();
 	    
 	    //Se recogen las campañas de microcr�ditos
-	    $repoMicro = $this->getDoctrine()->getRepository('AhoraMadridDonacionesBundle:CampaniaDonaciones');
+	    $repoMicro = $this->getDoctrine()->getRepository('MadridEnPieDonacionesBundle:CampaniaDonaciones');
 	    $campanias = $repoMicro->findAll();
 		
 		//Se buscan los créditos
-		$repository = $this->getDoctrine()->getRepository('AhoraMadridDonacionesBundle:Donacion');
+		$repository = $this->getDoctrine()->getRepository('MadridEnPieDonacionesBundle:Donacion');
 		$qb = $repository->createQueryBuilder('c')
 				->orderBy('c.id', 'DESC');
 		
@@ -92,7 +92,7 @@ class DonacionController extends AdminController{
 				$donaciones, $this->get('request')->query->get('page', 1), 25
 		);
 	
-		return $this->render('AhoraMadridDonacionesBundle:Admin:listar_donaciones.html.twig', array(
+		return $this->render('MadridEnPieDonacionesBundle:Admin:listar_donaciones.html.twig', array(
 				'form' => $form->createView(),
 				'pagination' => $pagination,
 				'total' => $total,
@@ -111,10 +111,10 @@ class DonacionController extends AdminController{
 		if($response != null) return $response;
 		
 		//Se buscan el cr�dito
-		$repository = $this->getDoctrine()->getRepository('AhoraMadridDonacionesBundle:Donacion');
+		$repository = $this->getDoctrine()->getRepository('MadridEnPieDonacionesBundle:Donacion');
 		$donacion = $repository->find($id);
 		
-		return $this->render('AhoraMadridDonacionesBundle:Admin:detalle_donacion.html.twig', array('donacion' => $donacion));
+		return $this->render('MadridEnPieDonacionesBundle:Admin:detalle_donacion.html.twig', array('donacion' => $donacion));
 	}
 	
 	/**
@@ -127,7 +127,7 @@ class DonacionController extends AdminController{
 	
 		//Se buscan el cr�dito
 		$em = $this->getDoctrine()->getManager();
-		$donacion = $em->getRepository('AhoraMadridDonacionesBundle:Donacion')->find($id);
+		$donacion = $em->getRepository('MadridEnPieDonacionesBundle:Donacion')->find($id);
 		$donacion->setRecibido($recibir);
 		$em->flush();
 		
@@ -135,11 +135,11 @@ class DonacionController extends AdminController{
 		if($recibir == 1){
 			$mailer = $this->get('mailer');
 			$message = $mailer->createMessage()
-			->setSubject('Ahora Madrid: Transferencia recibida')
-			->setFrom('contratos@ahoramadrid.org')
+			->setSubject('Madrid en Pie: Transferencia recibida')
+			->setFrom('DonacionesIUMEPM@gmail.com')
 			->setTo($donacion->getCorreoElectronico())
 			->setBody(
-					$this->renderView('AhoraMadridDonacionesBundle:Admin:correo_transferencia_recibida.txt.twig'),
+					$this->renderView('MadridEnPieDonacionesBundle:Admin:correo_transferencia_recibida.txt.twig'),
 					'text/plain'
 			);
 			$mailer->send($message);
@@ -162,7 +162,7 @@ class DonacionController extends AdminController{
 	
 		//Se buscan el cr�dito
 		$em = $this->getDoctrine()->getManager();
-		$donacion = $em->getRepository('AhoraMadridDonacionesBundle:Donacion')->find($id);
+		$donacion = $em->getRepository('MadridEnPieDonacionesBundle:Donacion')->find($id);
 		$em->remove($donacion);
 		$em->flush();
 	

@@ -1,11 +1,11 @@
 <?php
 
-namespace AhoraMadrid\AdminBaseBundle\Controller;
+namespace MadridEnPie\AdminBaseBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
-use AhoraMadrid\MicrocreditosBundle\Entity\Usuario;
+use MadridEnPie\MicrocreditosBundle\Entity\Usuario;
 
 class AdminController extends Controller{
 	
@@ -49,7 +49,7 @@ class AdminController extends Controller{
 	}
 	
 	protected function prohibido(){
-		return $this->render('AhoraMadridAdminBaseBundle::prohibido.html.twig');
+		return $this->render('MadridEnPieAdminBaseBundle::prohibido.html.twig');
 	}
 	
 }

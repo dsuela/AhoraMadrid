@@ -1,6 +1,6 @@
 <?php
 
-namespace AhoraMadrid\DonacionesBundle\Form;
+namespace MadridEnPie\DonacionesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -36,7 +36,7 @@ class CampaniaDonacionesType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AhoraMadrid\DonacionesBundle\Entity\CampaniaDonaciones'
+            'data_class' => 'MadridEnPie\DonacionesBundle\Entity\CampaniaDonaciones'
         ));
     }
 
@@ -45,6 +45,6 @@ class CampaniaDonacionesType extends AbstractType
      */
     public function getName()
     {
-        return 'ahoramadrid_donacioensbundle_campaniadonaciones';
+        return 'madridenpie_donacioensbundle_campaniadonaciones';
     }
 }

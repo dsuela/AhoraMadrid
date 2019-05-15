@@ -1,6 +1,6 @@
 <?php
 
-namespace AhoraMadrid\AdminBaseBundle\Entity;
+namespace MadridEnPie\AdminBaseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Usuario
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AhoraMadrid\AdminBaseBundle\Entity\UsuarioRepository")
+ * @ORM\Entity(repositoryClass="MadridEnPie\AdminBaseBundle\Entity\UsuarioRepository")
  */
 class Usuario
 {

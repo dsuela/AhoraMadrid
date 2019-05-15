@@ -25,7 +25,7 @@ p.ubuntu {
   text-align: center;
 }
 div#page1 {
-  background: #00A48C;
+  background: #c62470;
   min-height: 100%;
   height: auto;
   min-height: 100vh;
@@ -35,7 +35,7 @@ div#page1 {
   /* ¡Fináncianos!: */
   font-family: 'Ubuntu', sans-serif;
   font-size: 32px;
-  color: #00A48C;
+  color: #c62470;
   line-height: 37px;
   transition: all 0.5s;
   /* Rectangle 28: */
@@ -63,7 +63,7 @@ div#page1 {
   margin-top: 5%;
 }
 span.ahora {
-  color: #00A48C;
+  color: #c62470;
   font-weight: bold;
 }
 p.ultimopaso {
@@ -120,7 +120,7 @@ p.ultimopaso .titulo {
   line-height: 37px;
   transition: all 0.5s;
   /* Rectangle 28: */
-  background: #00A48C;
+  background: #c62470;
   box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   text-decoration: none;
@@ -130,7 +130,7 @@ p.ultimopaso .titulo {
 }
 #footer {
   pading-top: 5em;
-  background-color: #00A48C;
+  background-color: #c62470;
   border-top: 1px solid #03705E;
 }
 #footer .container {
@@ -163,7 +163,7 @@ p.ultimopaso .titulo {
   display: inline-block;
   border-radius: 5px;
   text-decoration: none;
-  border: 1px #00A48C solid;
+  border: 1px #c62470 solid;
   padding: 1em 1.4em 1em 1.4em;
   margin: 1% 3%;
 }
@@ -174,7 +174,7 @@ p.ultimopaso .titulo {
 #formularios div.radio:selected {
   box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.5);
 }
-#formularios div#ahoramadrid_donacionesbundle_donacion_importe {
+#formularios div#madridenpie_donacionesbundle_donacion_importe {
   border: 0px;
   height: auto;
   box-shadow: none;
@@ -196,7 +196,7 @@ p.ultimopaso .titulo {
   overflow-x: hidden;
 }
 #formularios .active {
-  background-color: #00A48C ;
+  background-color: #c62470 ;
 }
 #formularios .active label {
   color: #fff;
@@ -204,9 +204,9 @@ p.ultimopaso .titulo {
 #formularios input[type=radio] {
   display: none;
 }
-#formularios #ahoramadrid_donacionesbundle_donacion_Enviar {
+#formularios #madridenpie_donacionesbundle_donacion_Enviar {
   /* Rectangle 28 Copy 12: */
-  background: #00A48C;
+  background: #c62470;
   box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   border: 0px;
@@ -217,8 +217,13 @@ p.ultimopaso .titulo {
   line-height: 28px;
   display: none;
 }
-#formularios #ahoramadrid_donacionesbundle_donacion_Enviar:hover {
+#formularios #madridenpie_donacionesbundle_donacion_Enviar:hover {
   box-shadow: none;
   background-color: #00D6B2;
   transition: all 0.5s;
+}
+
+#formularios h1,
+#formularios p {
+  color: #000;
 }

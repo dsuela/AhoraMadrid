@@ -1,9 +1,9 @@
-{% extends 'AhoraMadridAdminBaseBundle::layout_admin.html.twig' %}
+{% extends 'MadridEnPieAdminBaseBundle::layout_admin.html.twig' %}
 
 {% block body %}
 <div class="container">
 	<h2>
-		Administración de Ahora Madrid
+		Administración de Madrid en Pie
 	</h2>
 	<div class="col-md-8">
 		<table id="listadoCampanias" class="table table-striped ">
@@ -12,23 +12,8 @@
 	            <th>Enlace</th>
 	        </tr>
 	        <tr>
-	        	<td>Microcréditos</td>
-	        	<td><a href="{{ path('listar_creditos') }}">Administrar</a></td>
-
-	        </tr>
-	        <tr>
-	        	<td>Inscripción interventoras y apoderadas</td>
-	        	<td><a href="{{ path('listar_inscritos') }}">Administrar</a></td>
-
-	        </tr>
-	        <tr>
 	        	<td>Donaciones</td>
 	        	<td><a href="{{ path('listar_donaciones') }}">Administrar</a></td>
-
-	        </tr>
-	        <tr>
-	        	<td>Votantes</td>
-	        	<td><a href="{{ path('listar_votantes') }}">Administrar</a></td>
 
 	        </tr>
 	    </table>

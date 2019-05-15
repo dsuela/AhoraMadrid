@@ -1,6 +1,6 @@
 <?php
 
-namespace AhoraMadrid\DonacionesBundle\Entity;
+namespace MadridEnPie\DonacionesBundle\Entity;
 
 /**
  * DonacionRepository

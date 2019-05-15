@@ -1,6 +1,6 @@
 <?php
 
-namespace AhoraMadrid\AdminBaseBundle\Entity;
+namespace MadridEnPie\AdminBaseBundle\Entity;
 
 /**
  * UsuarioRepository

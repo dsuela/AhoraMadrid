@@ -1,16 +1,16 @@
 <?php
 
-namespace AhoraMadrid\DonacionesBundle\Entity;
+namespace MadridEnPie\DonacionesBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use AhoraMadrid\DonacionesBundle\Validator\Constraints as AMAssert;
+use MadridEnPie\DonacionesBundle\Validator\Constraints as AMAssert;
 
 /**
  * Donacion
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AhoraMadrid\DonacionesBundle\Entity\DonacionRepository")
+ * @ORM\Entity(repositoryClass="MadridEnPie\DonacionesBundle\Entity\DonacionRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Donacion

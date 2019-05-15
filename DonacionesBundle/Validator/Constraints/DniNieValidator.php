@@ -1,5 +1,5 @@
 <?php
-namespace AhoraMadrid\DonacionesBundle\Validator\Constraints;
+namespace MadridEnPie\DonacionesBundle\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 /**

@@ -1,11 +1,11 @@
 <?php
 
-namespace AhoraMadrid\AdminBaseBundle\Controller;
+namespace MadridEnPie\AdminBaseBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AhoraMadrid\AdminBaseBundle\Entity\Usuario;
-use AhoraMadrid\AdminBaseBundle\Form\LoginType;
+use MadridEnPie\AdminBaseBundle\Entity\Usuario;
+use MadridEnPie\AdminBaseBundle\Form\LoginType;
 
 class LoginController extends AdminController{
 	
@@ -25,7 +25,7 @@ class LoginController extends AdminController{
 		$error = "";
 		if ($form->isValid()) {
 			//Se busca el usuario
-			$repository = $this->getDoctrine()->getRepository('AhoraMadridAdminBaseBundle:Usuario');
+			$repository = $this->getDoctrine()->getRepository('MadridEnPieAdminBaseBundle:Usuario');
 			$usuario = $repository->findOneByCorreo($usuarioParam->getCorreo());
 			
 			if($usuario != null){
@@ -41,8 +41,8 @@ class LoginController extends AdminController{
 			}
 		}
 		
-		return $this->render('AhoraMadridAdminBaseBundle::login.html.twig', array('form' => $form->createView(), 'error' => $error));
-		//return $this->render('AhoraMadridAdminBaseBundle::login.html.twig', array('form' => $form->createView(), 'error' => $error, 'contrasena' => $hash));
+		return $this->render('MadridEnPieAdminBaseBundle::login.html.twig', array('form' => $form->createView(), 'error' => $error));
+		//return $this->render('MadridEnPieAdminBaseBundle::login.html.twig', array('form' => $form->createView(), 'error' => $error, 'contrasena' => $hash));
 	}
 	
 	/**
@@ -61,7 +61,7 @@ class LoginController extends AdminController{
 	 * @Route("/menu", name="menu_admin")
 	 */
 	public function menu(Request $request){
-		return $this->render('AhoraMadridAdminBaseBundle::menu.html.twig');
+		return $this->render('MadridEnPieAdminBaseBundle::menu.html.twig');
 	}
 	
 }

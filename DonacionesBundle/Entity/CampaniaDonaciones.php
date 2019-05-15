@@ -1,6 +1,6 @@
 <?php
 
-namespace AhoraMadrid\DonacionesBundle\Entity;
+namespace MadridEnPie\DonacionesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CampaniaDonaciones
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AhoraMadrid\DonacionesBundle\Entity\CampaniaDonacionesRepository")
+ * @ORM\Entity(repositoryClass="MadridEnPie\DonacionesBundle\Entity\CampaniaDonacionesRepository")
  */
 class CampaniaDonaciones
 {

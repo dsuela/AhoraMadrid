@@ -1,6 +1,6 @@
 <?php
 
-namespace AhoraMadrid\AdminBaseBundle\Tests\Controller;
+namespace MadridEnPie\AdminBaseBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

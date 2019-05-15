@@ -8,8 +8,8 @@ $(function() {
 	});
 
 
-	$("#ahoramadrid_donacionesbundle_donacion_importe input:radio").change(function () {
-			$('#ahoramadrid_donacionesbundle_donacion_importe').find('div').removeClass('active');	
+	$("#madridenpie_donacionesbundle_donacion_importe input:radio").change(function () {
+			$('#madridenpie_donacionesbundle_donacion_importe').find('div').removeClass('active');
 			//$('#step-distritos').show();
 			/*$('.nicEdit-panelContain').parent().width('100%');
 			$('.nicEdit-panelContain').parent().next().width('98%');
@@ -26,12 +26,12 @@ $(function() {
 		console.log("tiriri")
 		if( $('.acepto1 input').is(':checked') && $('.acepto2 input').is(':checked') ){
 			$('#send-dummy').hide();
-			$('#ahoramadrid_donacionesbundle_donacion_Enviar').fadeIn();
+			$('#madridenpie_donacionesbundle_donacion_Enviar').fadeIn();
 			enviar_form=true;
 		}
 		else{
 			$('#send-dummy').fadeIn();
-			$('#ahoramadrid_donacionesbundle_donacion_Enviar').hide();
+			$('#madridenpie_donacionesbundle_donacion_Enviar').hide();
 			enviar_form=false;
 		}
 	});

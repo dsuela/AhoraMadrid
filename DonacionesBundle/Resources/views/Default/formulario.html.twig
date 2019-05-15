@@ -1,37 +1,12 @@
-{% extends 'AhoraMadridDonacionesBundle::layout.html.twig' %}
+{% extends 'MadridEnPieDonacionesBundle::layout.html.twig' %}
 
-{% form_theme form 'AhoraMadridDonacionesBundle::form_theme.html.twig' %}
+{% form_theme form 'MadridEnPieDonacionesBundle::form_theme.html.twig' %}
 
 {% block body %}
 <div class="main-container">       
 	<div id="formularios">
 	    <div class="container">
-	    	<!-- doble corchete dump() doble corchete-->
-	        <div class="row" style="margin-top: 4% " >                       
-	            <div class="col-md-1 col-xs-4">
-	            	<div >
-	            		<a href="http://participa.ahoramadrid.org/donaciones/"> 
-	            			<img src="{{ asset('bundles/ahoramadriddonaciones/images/logo2.png') }}" class="img-responsive" /> </a>
-	            	</div>
-	            </div>
-	            <div class="col-md-9 col-md-offset-1 col-xs-9"> <h3>El objetivo en esta fase de la campaña de recaudación es de <strong>{{ campania.objetivo|number_format(0, ',', '.') }} € </strong> </h3> </div>
-	        </div>
-	        <div class="row">
-	        	<div class="col-md-4 ">
-	        		
-	        	</div>
-	        	<div class="col-md-4 ">
-	        		<canvas id="chart1" width="409" height="204" style="width: 409px; height: 204px;"></canvas>
-	        	</div>
-	        	<div class="col-md-4 ">
-	        		<p style="text-align:left; margin-top: 0px; padding-top:0px" id="info-donaciones">
-	        			Préstamos totales recibidos: <br/> <strong>{{ totalRecibidos|number_format(0, ',', '.') }} € </strong> 	        			<br/>
-						Objetivo de la fase {{ campania.fase }} : {{ campania.objetivo|number_format(0, ',', '.') }} € <br/> 
-	        			<small> *transferencias recibidas y aprobadas <br/> 
-	        			<small>Las transferencias pueden tardar hasta 2 días en recibirse. Luego son revisadas para comprobar que cumplen con la ley de financiación. Por eso hay un retraso desde que se hace la transferencia hasta que aparece reflejada. </small> </small>
-	        		</p>
-	        	</div>
-	        </div>
+
 	        <div class="row">                    	
 	            	<div class="col-md-12 ">
 	            		<h2> ¿Cuánto quieres donar? </h2> <small> * El límite legal es de 10.000€ entre todas tus aportaciones. Si superas este límite no podemos aceptar la transferencia.
@@ -90,15 +65,15 @@
 			<div class="row" style="margin-top:40px;">
 				<div class="col-md-10 col-md-offset-1">
 					<div id="legal">
-						<h2>CONDICIONES GENERALESS </h2>
-						<h3>Relación entre Ahora Madrid y el colaborador o colaboradora</h3>
+						<h2>CONDICIONES GENERALES </h2>
+						<h3>Relación entre Izquierda Unida Madrid en Pie Municipalista y el colaborador o colaboradora</h3>
 <p>
-La realización de donaciones económicas no implica la vinculación del colaborador con Ahora Madrid ni le confiere la condición legal de socio, afiliado o simpatizante. Tampoco queda obligado por sus estatutos y demás normas internas. Conforme a lo dispuesto en la ley orgánica 1/2002, de 22 de marzo, reguladora del derecho de asociación, la ley orgánica 8/2007, de 4 de julio, de financiación de partidos políticos su donativo tendrá la consideración de “donación privada”, distinta de las cuotas de socios, afiliados o simpatizantes. 
+La realización de donaciones económicas no implica la vinculación del colaborador con Izquierda Unida Madrid en Pie Municipalista ni le confiere la condición legal de socio, afiliado o simpatizante. Tampoco queda obligado por sus estatutos y demás normas internas. Conforme a lo dispuesto en la ley orgánica 1/2002, de 22 de marzo, reguladora del derecho de asociación, la ley orgánica 8/2007, de 4 de julio, de financiación de partidos políticos su donativo tendrá la consideración de “donación privada”, distinta de las cuotas de socios, afiliados o simpatizantes.
 </p>
 <p> 
 						<h3>Protección de datos de carácter personal</h3>
 <p>
-Ahora Madrid, de acuerdo con la ley orgánica 15/1999 de protección de datos de carácter personal, le informa de que sus datos serán incorporados al fichero “Elecciones 2015”, del que es responsable Ahora Madrid, que los utilizará para tramitar su colaboración, gestionar los adeudos bancarios, cumplir con la normativa de financiación de asociaciones y partidos políticos y para fines estadísticos. Para ejercer sus derechos de acceso, rectificación, cancelación u oposición, puede mandar un correo electrónico a donaciones@ahoramadrid.org, adjuntando una copia de su documento nacional de identidad.
+	Izquierda Unida Madrid en Pie Municipalista, con CIF V88380647 y con domicilio en la calle Martín de Vargas, 46 Local de Madrid, de acuerdo con la ley orgánica 15/1999 de protección de datos de carácter personal, le informa de que sus datos serán incorporados al fichero “Elecciones 2019”, del que es responsable Izquierda Unida Madrid en Pie Municipalista, que los utilizará para tramitar su colaboración, gestionar los adeudos bancarios, cumplir con la normativa de financiación de asociaciones y partidos políticos y para fines estadísticos. Para ejercer sus derechos de acceso, rectificación, cancelación u oposición, puede mandar un correo electrónico a DonacionesIUMEPM@gmail.com, adjuntando una copia de su documento nacional de identidad.
 </p>
 
 					</div>

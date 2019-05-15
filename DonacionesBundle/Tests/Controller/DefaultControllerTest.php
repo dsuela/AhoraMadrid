@@ -1,6 +1,6 @@
 <?php
 
-namespace AhoraMadrid\DonacionesBundle\Tests\Controller;
+namespace MadridEnPie\DonacionesBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
